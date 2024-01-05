@@ -1,15 +1,31 @@
-<nav>
-  <a href="/">Home</a>
-  <a href="/todos">Todos</a>
-  <a href="/testing">Testing</a>
-  <a href="/about">About</a>
-  <a href="/help">Help</a>
-</nav>
+<script>
+  import {authSetup, auth, dbSetup, setupAuthListener, setupDbListener} from "$lib/firebase.js";
+  import * as navigation from "$app/navigation";
+  import { fbStore } from "../store/fbStore";
+  import '../todomvc-common-base.css'
+  import '../todomvc-app-css.css'
+//  import Authenticate from "../../components/Authenticate.svelte";
 
-<slot></slot>
-
-<style>
-  nav a {
-      margin: 8px;
+  if ( !authSetup) {
+    setupAuthListener()
   }
-</style>
+  if ( !dbSetup ) {
+    setupDbListener()
+  }
+
+/*
+  let user = null
+  fbStore.subscribe( (curr) => {
+    if ( curr.user ) {
+      console.log('user found', curr.user )
+      user = curr.user
+    } else {
+     // redirect(307,'/todos/auth')
+      navigation.goto('/todos/auth')
+    }
+  })
+*/
+
+</script>
+
+<slot />
