@@ -1,5 +1,6 @@
-# svelte-todos
-12/29/2023
+# todos-svelte
+
+![Todos Svelte image](todosmvc-svelte.jpg)
 
 This is a simple [SvelteKit](https://kit.svelte.dev/docs/introduction) project which I have used to experiment and
 learn about Svelte features.
