@@ -1,6 +1,6 @@
 # todos-svelte
 
-![Todos Svelte image](todosmvc-svelte.jpg)
+![Todos Svelte image](todosmvc-svelte.jpg =400x )
 
 This is a simple [SvelteKit](https://kit.svelte.dev/docs/introduction) project which I have used to experiment and
 learn about Svelte features.
