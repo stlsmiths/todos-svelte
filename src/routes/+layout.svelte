@@ -4,11 +4,15 @@
   import {signInWithEmailAndPassword} from "firebase/auth";
 
   if ( !authSetup ) {
-    setupAuthListener()
+    setupAuthListener().then( () => {
+
+    })
   }
+/*
   if ( !dbSetup ) {
     setupDbListener()
   }
+*/
 
   let user = undefined
   let uname = ''
@@ -50,7 +54,7 @@
     <label for="uname">Username</label>
     <input type="text" id="uname" name="uname" bind:value={uname}>
     <label for="upass">Password</label>
-    <input type="text" id="upass" name="upass" bind:value={upass}>
+    <input type="password" id="upass" name="upass" bind:value={upass}>
     <button class="default" on:click={onSubmit}>Submit</button>
   </div>
 

@@ -22,7 +22,11 @@ npm create svelte@latest my-app
 
 ## Firebase setup
 
-You will need to setup and configure your Firebase project to provide both Authentication and F
+You will need to setup and configure your Firebase project to provide both Authentication and Realtime Database.  The configuration app settings are stored
+in the `.env` file (as demonstrated in [dot_env](dot_env)) and are read in the `firebase.js` file.
+
+The Firebase rtdb has an endpoint of `todos/` where the items are stored.
+
 
 ## Developing
 

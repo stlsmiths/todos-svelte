@@ -38,9 +38,11 @@ export async function setupAuthListener() {
           user,
         }
       })
+      await setupDbListener()
     }
   })
   authSetup = true
+  return authSetup
 }
 export async function setupDbListener() {
 
