@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getApp, getApps, initializeApp, deleteApp} from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {getDatabase, onValue, ref} from 'firebase/database'
 import { fbStore } from "../store/fbStore.ts";
 
@@ -13,13 +13,15 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FB_APP_ID
 };
 
-let firebaseApp
+let firebaseApp = initializeApp(firebaseConfig)
+/*
 if ( getApps().length ) {
   firebaseApp = getApp()
   deleteApp(firebaseApp)
 }
 
 firebaseApp = initializeApp(firebaseConfig)
+*/
 
 export const db = getDatabase(firebaseApp)
 export const auth = getAuth(firebaseApp)
@@ -28,18 +30,14 @@ export let authSetup = false
 export let dbSetup = false
 
 export async function setupAuthListener() {
-  auth.onAuthStateChanged( async (user) => {
+  onAuthStateChanged( getAuth(firebaseApp), async (user) => {
     if ( user && user.uid ) {
-      console.log('found user', user.uid )
-      //  luser = user
       fbStore.update( (curr) => {
         return {
           ...curr,
           user,
         }
       })
-    } else {
-      console.log('no user found')
     }
   })
   authSetup = true

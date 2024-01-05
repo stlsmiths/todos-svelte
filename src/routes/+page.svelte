@@ -2,7 +2,6 @@
   import { page } from '$app/stores'
   import { fbStore, addFBTodo, updateFBTodo, deleteFBTodo } from '../store/fbStore';
   import type { Todo } from '../store/Todo'
-  import {dbSetup, setupDbListener} from "$lib/firebase";
 
   let items: Todo[] = []
   let newTodo = ''
@@ -11,15 +10,9 @@
   let allDone = false
   let autofocusTimer = 0
 
-  if ( !dbSetup ) {
-      setupDbListener()
-  }
-
   // Listener ... for "todos" changes from the Svelte Store (Firebase RTDB)
   fbStore.subscribe( (curr: any) => {
-    // console.log('fbstore subscr curr', curr)
-    // user = curr.user
-    items = curr.todos //[...curr.todos]
+    items = curr.todos
   });
 
   $: completed = items.filter( i => i.completed === true )
@@ -60,7 +53,6 @@
   async function toggleTodo(todo) {
     await updateFBTodo( todo, todo.name, todo.completed )
   }
-
 
   // start editing an item ...
   function editTodo(todo:Todo) {
@@ -103,7 +95,6 @@
   }
 
   async function onChangeAll() {
-//    items = items.map( item => ({...item, completed: allDone }))
     await Promise.all(
       [...items].map( (item) => {
         updateFBTodo(item,item.name,allDone)

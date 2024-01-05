@@ -6,7 +6,7 @@ learn about Svelte features.
 
 The app also includes a SvelteKit + Firebase implementation of the age-old [TodoMVC](http://todomvc.com) demonstration app where I have
 added Firebase [Authentication](https://firebase.google.com/products/auth) and the Firebase [Realtime Database](https://firebase.google.com/products/realtime-database) for persistence of the todos.
-                  
+
 
 ## Creating a project
 
@@ -19,6 +19,10 @@ npm create svelte@latest
 # create a new project in my-app
 npm create svelte@latest my-app
 ```
+
+## Firebase setup
+
+You will need to setup and configure your Firebase project to provide both Authentication and F
 
 ## Developing
 

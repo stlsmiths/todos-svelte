@@ -6,7 +6,7 @@ import type {Todo} from "./Todo";
 
 export const fbStore = writable({
   user: null,
-  todos: []
+  todos: [] as Todo[]
 })
 
  export async function updateFBTodo(todo: Todo, name: string, completed: boolean) : Promise<void> {

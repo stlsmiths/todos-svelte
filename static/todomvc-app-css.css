@@ -21,6 +21,23 @@ body {
     -moz-osx-font-smoothing: grayscale;
   }
 
+  button.default {
+    margin: 15px;
+    padding: 8px;
+    border: solid;
+    background: none;
+    font-size: 100%;
+    vertical-align: baseline;
+    font-family: inherit;
+    font-weight: bold;
+    color: white;
+    background-color: #9b9a9a;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.4em;
