@@ -1,12 +1,12 @@
-# todos-svelte
+# todos-sveltekit
 
 <img alt="todos svelte image" src="todosmvc-svelte.png" width="400" />
 
-This is a simple [SvelteKit](https://kit.svelte.dev/docs/introduction) project which I have used to experiment and
-learn about Svelte features.
+This is a simple [SvelteKit](https://kit.svelte.dev/docs/introduction) project which I have used to experiment with and
+learn about various Svelte features and SSR.
 
 The app also includes a SvelteKit + Firebase implementation of the age-old [TodoMVC](http://todomvc.com) demonstration app where I have
-added Firebase [Authentication](https://firebase.google.com/products/auth) and the Firebase [Realtime Database](https://firebase.google.com/products/realtime-database) for persistence of the todos.
+added [Firebase Authentication](https://firebase.google.com/products/auth) and the [Firebase Realtime Database](https://firebase.google.com/products/realtime-database) for persistence of the todos.
 
 
 ## Creating a project
