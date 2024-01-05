@@ -1,6 +1,6 @@
 # todos-svelte
 
-<img src="todosmvc-svelte.jpg" alt="TodosMVC Svelte" width="350"/>
+![alt><](todosmvc-svelte.png){width=400}
 
 This is a simple [SvelteKit](https://kit.svelte.dev/docs/introduction) project which I have used to experiment and
 learn about Svelte features.
