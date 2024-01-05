@@ -1,9 +1,9 @@
 <script>
   import {authSetup, auth, dbSetup, setupAuthListener, setupDbListener} from "$lib/firebase.js";
-  import * as navigation from "$app/navigation";
-  import { fbStore } from "../store/fbStore";
-  import '../todomvc-common-base.css'
-  import '../todomvc-app-css.css'
+//  import * as navigation from "$app/navigation";
+//  import { fbStore } from "../../store/fbStore.js";
+//  import '../../todomvc-common-base.css'
+//  import '../../todomvc-app-css.css'
 //  import Authenticate from "../../components/Authenticate.svelte";
 
   if ( !authSetup) {
@@ -28,4 +28,7 @@
 
 </script>
 
+<h1>todos</h1>
+
 <slot />
+
