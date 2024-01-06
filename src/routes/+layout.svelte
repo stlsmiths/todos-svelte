@@ -8,11 +8,11 @@
 
     })
   }
-/*
+
+
   if ( !dbSetup ) {
-    setupDbListener()
+    setupDbListener().then( () => {})
   }
-*/
 
   let user = undefined
   let uname = ''

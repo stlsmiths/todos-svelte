@@ -50,7 +50,16 @@
     newTodo = ''
   }
 
-  async function toggleTodo(todo) {
+  async function onNewKeyup(e:KeyboardEvent) {
+    console.log('onnewkeyup')
+    if (e.key === 'Enter') {
+      await addFBTodo(newTodo)
+      newTodo = ''
+    }
+  }
+
+  async function toggleTodo(todo:Todo) {
+    console.log('toggleitem')
     await updateFBTodo( todo, todo.name, todo.completed )
   }
 
@@ -124,16 +133,14 @@
             use:myAutoFocus
             placeholder="What needs to be done?"
             bind:value={newTodo}
-            on:keyup={ (e) => {
-                if (e.key === 'Enter') { addTodo() }
-              }
-            }>
+            on:keydown={onNewKeyup}
+            >
     </header>
 
     {#if count}
       <section class="main">
 
-      <input id="toggle-all" class="toggle-all" type="checkbox"
+      <input id="toggle-all" name="toggle-all" class="toggle-all" type="checkbox"
         bind:checked={allDone}
         on:change={onChangeAll}
         >
@@ -146,10 +153,11 @@
             <div class="view">
               <input class="toggle"
                      type="checkbox"
+                     name="input-todo-item"
                      bind:checked={item.completed}
                      on:change={toggleTodo(item)}
               >
-              <label on:dblclick={editTodo(item)}>{item.name}</label>
+              <label for="input-todo-item" on:dblclick={editTodo(item)}>{item.name}</label>
               <button class="destroy" on:click={removeTodo(item)}></button>
             </div>
             {#if item.key === editKey }

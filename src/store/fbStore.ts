@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store'
-import { db, auth } from '$lib/firebase'
+import { db, auth, app } from '$lib/firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
-import {push, ref, set} from "firebase/database";
+import {push, ref, set, getDatabase} from "firebase/database";
 import type {Todo} from "./Todo";
 
 export const fbStore = writable({
@@ -10,6 +10,7 @@ export const fbStore = writable({
 })
 
  export async function updateFBTodo(todo: Todo, name: string, completed: boolean) : Promise<void> {
+   console.log('updatetodo')
     await set(ref(db, `todos/${todo.key}`), {
       ...todo,
       name,
@@ -22,23 +23,13 @@ export const fbStore = writable({
   }
 
   export async function addFBTodo( name: string ): Promise<void> {
-    const todoRef = ref(db, 'todos');
-    const newTodoRef = push(todoRef);
+    // const todoRef = ref(db, 'todos');
+    console.log('addFBTodo: name', name)
+    const newTodoRef = await push( ref(getDatabase(app), 'todos') );
+    console.log('newtodoref', newTodoRef)
     await set(newTodoRef, {
       name,
       completed: false,
       created_ts: Date.now(),
     });
   }
-
-  export const authHandlers = {
-    signup: async (email: string, pass: string) => {
-        await createUserWithEmailAndPassword(auth, email, pass)
-    },
-    login: async (email: string, pass: string) => {
-        await signInWithEmailAndPassword(auth, email, pass)
-    },
-    logout: async () => {
-        await signOut(auth)
-    }
-}

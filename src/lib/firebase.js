@@ -14,15 +14,14 @@ const firebaseConfig = {
 };
 
 let firebaseApp = initializeApp(firebaseConfig)
-/*
 if ( getApps().length ) {
   firebaseApp = getApp()
   deleteApp(firebaseApp)
 }
 
 firebaseApp = initializeApp(firebaseConfig)
-*/
 
+export const app = firebaseApp
 export const db = getDatabase(firebaseApp)
 export const auth = getAuth(firebaseApp)
 
@@ -30,6 +29,7 @@ export let authSetup = false
 export let dbSetup = false
 
 export async function setupAuthListener() {
+  if ( authSetup ) return
   onAuthStateChanged( getAuth(firebaseApp), async (user) => {
     if ( user && user.uid ) {
       fbStore.update( (curr) => {
@@ -38,14 +38,14 @@ export async function setupAuthListener() {
           user,
         }
       })
-      await setupDbListener()
+      // await setupDbListener()
     }
   })
   authSetup = true
   return authSetup
 }
 export async function setupDbListener() {
-
+  if ( dbSetup ) return
   /**
      * @type {any[]}
      */
@@ -54,8 +54,9 @@ export async function setupDbListener() {
   onValue( todoRef, (snap) => {
     pitems = []
     snap.forEach( item => {
-      // console.log('item ', item.key, pitems.length, item.val())
-      pitems.push({ ...item.val(), key: item.key })
+      const pitem = { ...item.val(), key: item.key }
+      console.log('item ', item.key, pitems.length, pitem)
+      pitems.push( pitem )
     })
     fbStore.update( (curr) => {
       return {
